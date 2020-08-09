@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Search from './Search'
 
-function App() {
+export default function App() {
+  const [query, setQuery] = useState('')
+  const [pageNumber, setPageNumber] = useState(1)
+  Search(query, pageNumber)
+
+  function handleSearch(e){
+      setQuery(e.target.value)
+      setPageNumber(1)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <h1>Infinite scroll React</h1>
+    <input type="text" onChange={handleSearch}></input>
+    <div>Title</div>
+    <div>Title</div>
+    <div>Title</div>
+    <div>Title</div>
+    <div>Title</div>
+    <div>Loading...</div>
+    <div>Error</div>
+    </>
   );
 }
 
-export default App;
