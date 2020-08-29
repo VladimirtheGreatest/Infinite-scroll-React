@@ -28,7 +28,7 @@ export default function Search(query, pageNumber) {
             })
             setHasMore(response.data.docs.length > 0)
             console.log(response.data)
-            setLoading(true)
+            setLoading(false)
         }).catch(e => {
             if(axios.isCancel(e)) return
             setError(true)

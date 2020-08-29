@@ -1,5 +1,4 @@
 import React, {useState, useRef, useCallback} from 'react';
-import './App.css';
 import Search from './Search'
 
 export default function App() {
