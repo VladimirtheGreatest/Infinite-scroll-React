@@ -30,7 +30,7 @@ setPageNumber(prevPageNumber => prevPageNumber + 1)
   }
 
   return (
-    <>
+    <div className="App">
     <input type="text" value={query} onChange={handleSearch}></input>
     {books.map((book, index) => {
       if(books.length === index + 1){
@@ -41,7 +41,7 @@ setPageNumber(prevPageNumber => prevPageNumber + 1)
     })}
     <div>{loading && 'Loading...'}</div>
     <div>{error && 'Error'}</div>
-    </>
+    </div>
   )
 }
 
