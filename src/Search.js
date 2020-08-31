@@ -1,17 +1,14 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios'
 
-export default function Search(query, pageNumber) {
+export default function Search(pageNumber) {
 
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
-    const [books, setBooks] = useState([])
+    const [images, setImages] = useState([])
     const [hasMore, setHasMore] = useState(false)
 
 
-    useEffect(() => {
-        setBooks([])
-    }, [query])
 
     useEffect(() => {
         setLoading(true)
@@ -19,14 +16,14 @@ export default function Search(query, pageNumber) {
         let cancel
         axios({
             method : 'GET',
-            url : 'http://openlibrary.org/search.json',
-            params : {q : query, page: pageNumber},
+            url : 'https://picsum.photos/v2/list?limit=10',
+            params : {page: pageNumber},
             cancelToken : new axios.CancelToken(c => cancel = c)
         }).then(response => {
-            setBooks(prevBooks => {
-                return [...new Set([...prevBooks, ...response.data.docs.map(b => b.title)])] 
+            setImages(prevBooks => {
+                return [...new Set([...prevBooks, ...response.data.map(b => b.download_url)])] 
             })
-            setHasMore(response.data.docs.length > 0)
+            setHasMore(response.data.length > 0)
             console.log(response.data)
             setLoading(false)
         }).catch(e => {
@@ -34,9 +31,19 @@ export default function Search(query, pageNumber) {
             setError(true)
         })
         return () => cancel()
-    }, [query, pageNumber])
+    }, [pageNumber])
 
 
     //all the state from the hook
-    return {loading, error, books, hasMore}
+    return {loading, error, images, hasMore}
 }
+
+
+/* 
+fetch('https://picsum.photos/v2/list', {
+    method: 'GET',
+    "timeout": 0,
+  }).then(response => response.json())
+  .then(object => {
+    const images = object[0];
+    console.log(images.url)}) */

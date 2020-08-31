@@ -2,18 +2,17 @@ import React, {useState, useRef, useCallback} from 'react';
 import Search from './Search'
 
 export default function App() {
-  const [query, setQuery] = useState('')
   const [pageNumber, setPageNumber] = useState(1)
 
   const {
-    books,
+    images,
     hasMore,
     loading,
     error
-  } = Search(query, pageNumber)
+  } = Search(pageNumber)
 
 const observer = useRef()
-const lastBookElementRef = useCallback(node => {
+const lastImageElementRef = useCallback(node => {
   if(loading) return 
   if(observer.current) observer.current.disconnect()
   observer.current = new IntersectionObserver(entries => {
@@ -24,19 +23,14 @@ setPageNumber(prevPageNumber => prevPageNumber + 1)
   if(node) observer.current.observe(node)
 }, [loading, hasMore])
 
-  function handleSearch(e){
-      setQuery(e.target.value)
-      setPageNumber(1)
-  }
 
   return (
     <div className="App">
-    <input type="text" value={query} onChange={handleSearch}></input>
-    {books.map((book, index) => {
-      if(books.length === index + 1){
-        return <div ref={lastBookElementRef} key={book}>{book}</div>
+    {images.map((image, index) => {
+      if(images.length === index + 1){
+        return <img className="photo" ref={lastImageElementRef} key={image} src={image}/>
       } else {
-        return <div key={book}>{book}</div>
+        return  <img className="photo" key={image} src={image}/>
       }
     })}
     <div>{loading && 'Loading...'}</div>
