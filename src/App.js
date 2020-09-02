@@ -1,5 +1,6 @@
 import React, {useState, useRef, useCallback} from 'react';
 import Search from './Search'
+import { motion } from 'framer-motion';
 
 export default function App() {
   const [pageNumber, setPageNumber] = useState(1)
@@ -28,9 +29,31 @@ setPageNumber(prevPageNumber => prevPageNumber + 1)
     <div className="App">
     {images.map((image, index) => {
       if(images.length === index + 1){
-        return <img className="photo" ref={lastImageElementRef} key={image} src={image}/>
+        return <div className="img-grid" key={image} ref={lastImageElementRef}>
+        <motion.div className="img-wrap" 
+          layout
+          whileHover={{ opacity: 1 }}s
+        >
+          <motion.img src={image} alt="uploaded image"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          />
+        </motion.div>
+    </div>
       } else {
-        return  <img className="photo" key={image} src={image}/>
+        return  <div className="img-grid" key={image}>
+        <motion.div className="img-wrap"
+          layout
+          whileHover={{ opacity: 1 }}s
+        >
+          <motion.img src={image} alt="uploaded image"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          />
+        </motion.div>
+    </div>
       }
     })}
     <div>{loading && 'Loading...'}</div>
