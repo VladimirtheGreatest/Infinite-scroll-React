@@ -29,11 +29,11 @@ setPageNumber(prevPageNumber => prevPageNumber + 1)
     {images.map((image, index) => {
         return <div className="img-grid" key={image} ref={lastImageElementRef}>
         <div className="img-wrap">
-          <img src={image} alt={index+"image"}/>
+          <img src={image} loading="lazy" alt={index+"image"}/>
         </div>
     </div> 
     })}
-    <div class="loader">{loading}</div>
+    <div className="loader">{loading}</div>
     <div>{error && 'Error'}</div>
     </div>
   )

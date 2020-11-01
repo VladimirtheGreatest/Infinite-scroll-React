@@ -1,3 +1,8 @@
+body {
+	background: linear-gradient(-45deg, #1f130f, #e73c7e, #1d2f36, #edf5f3);
+	background-size: 100vh 400%;
+	animation: gradient 15s ease infinite;
+}
 .App{
   max-width: 960px;
   margin: 0 auto;
@@ -22,6 +27,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  animation: fadeIn ease 5s;
 }
 
 .loader {
@@ -34,7 +40,7 @@
   margin: -75px 0 0 -75px;
   border: 16px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid #3498db;
+  border-top: 16px solid #af1010;
   width: 120px;
   height: 120px;
   margin-top: 20px;
@@ -45,6 +51,27 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
 }
 
 
