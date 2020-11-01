@@ -33,7 +33,7 @@ setPageNumber(prevPageNumber => prevPageNumber + 1)
         </div>
     </div> 
     })}
-    <div>{loading && 'Loading...'}</div>
+    <div class="loader">{loading}</div>
     <div>{error && 'Error'}</div>
     </div>
   )
