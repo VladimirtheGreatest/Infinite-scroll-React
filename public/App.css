@@ -1,13 +1,7 @@
-/* base styles & title */
-body{
-  font-family: "Noto Serif";
-  color: var(--secondary);
-}
 .App{
   max-width: 960px;
   margin: 0 auto;
 }
-
 /* image grid styles */
 .img-grid{
   margin: 20px auto;
@@ -18,7 +12,6 @@ body{
   overflow: hidden;
   height: 0;
   padding: 50% 0;
-  /* padding controls height, will always be perfectly square regardless of width */
   position: relative;
   opacity: 0.8;
 }
